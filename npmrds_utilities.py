@@ -53,7 +53,7 @@ def get_nhpp_period(day_of_week, hour):
 
 
 ritis_df['datepart'] = ritis_df.apply(lambda row : row['measurement_tstamp'].split(' ')[0], axis=1)
-ritis_df['timepart'] = ritis_df.apply(lambda row : row.split(' ')[1], axis=1)
+ritis_df['timepart'] = ritis_df.apply(lambda row : row['measurement_tstamp'].split(' ')[1], axis=1)
 ritis_df['mo'] = ritis_df.apply(lambda row : int(row['datepart'].split('/')[0]), axis=1)
 ritis_df['dy'] = ritis_df.apply(lambda row : int(row['datepart'].split('/')[1]), axis=1)
 ritis_df['dow'] = ritis_df.apply(lambda row : datetime.date(2019, row['mo'], row['dy']).weekday(), axis=1)
