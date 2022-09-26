@@ -59,3 +59,7 @@ ritis_df['dy'] = ritis_df.apply(lambda row : int(row['datepart'].split('-')[2]),
 ritis_df['dow'] = ritis_df.apply(lambda row : datetime.date(2019, row['mo'], row['dy']).weekday(), axis=1)
 ritis_df['hour'] = ritis_df.apply(lambda row: int(row['timepart'].split(':')[0]), axis=1)
 ritis_df['nhpp_period'] = ritis_df.apply(lambda row : get_nhpp_period(row['dow'], row['hour']), axis=1)
+
+
+g50 = ritis_df.groupby('tmc_code')['travel_time_seconds'].quantile(q=0.5)
+g80 = ritis_df.groupby('tmc_code')['travel_time_seconds'].quantile(q=0.8)
