@@ -34,8 +34,11 @@ nhpp_weekend_6_8 =  4
 # Note that 'hour' values are given using the 24-hour (not 12-hour) clock.
 def get_nhpp_period(day_of_week, hour):
 	retval = 0
-	if day_of_week == 'weekend' and hour >=6 and hour < 20:
-		retval = nhpp_weekend_6_8
+	if (dow == 5 or dow == 6):
+		if hour >=6 and hour < 20:
+			retval = nhpp_weekend_6_8
+		else:
+			retval = nhpp_none
 	elif hour >=6 and hour < 10:
 		retval = nhpp_weekday_6_10
 	elif hour >= 10 and hour < 16:
@@ -47,3 +50,12 @@ def get_nhpp_period(day_of_week, hour):
 	# endif
 	return retval
 # end_def get_nhpp_period()
+
+
+ritis_df['datepart'] = ritis_df.apply(lambda row : row['measurement_tstamp'].split(' ')[0], axis=1)
+ritis_df['timepart'] = ritis_df.apply(lambda row : row.split(' ')[1], axis=1)
+ritis_df['mo'] = ritis_df.apply(lambda row : int(row['datepart'].split('/')[0]), axis=1)
+ritis_df['dy'] = ritis_df.apply(lambda row : int(row['datepart'].split('/')[1]), axis=1)
+ritis_df['dow'] = ritis_df.apply(lambda row : datetime.date(2019, row['mo'], row['dy']).weekday(), axis=1)
+ritis_df['hour'] = ritis_df.apply(lambda : row int(row['timepart'].split(':')[0]), axis=1)
+ritis_df['nhpp_period'] = ritis_df.apply(lambda row : get_nhpp_period(row['dow'], row['hour']), axis=1)
