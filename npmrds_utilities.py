@@ -127,9 +127,11 @@ period_4_stats_df = period_4_g50_df.merge(right=period_4_g80_df, left_on='tmc_co
 period_4_stats_df['p3_lottr'] = round(period_4_stats_df['p4_tt_secs_80pct'] / period_4_stats_df['p4_tt_secs_50pct'], 2)
 
 
+#### Join 4 (in this case 3) data frames into a single DF
 
+j1 = period_1_stats_df.merge(right=period_2_stats_df, left_on='tmc_code', right_on='tmc_code')
+j2 = j1.merge(right=period_3_stats_df, left_on='tmc_code', right_on='tmc_code')
 
+j2 = j2.drop(columns=['p1_tt_secs_50pct', 'p1_tt_secs_80pct', 'p2_tt_secs_50pct', 'p2_tt_secs_80pct',
+                      'p3_tt_secs_50pct', 'p3_tt_secs_80pct'])
 
-#### - old code below this point
-g50 = ritis_df.groupby('tmc_code')['travel_time_seconds'].quantile(q=0.5)
-g80 = ritis_df.groupby('tmc_code')['travel_time_seconds'].quantile(q=0.8)
