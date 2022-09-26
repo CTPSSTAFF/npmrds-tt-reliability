@@ -60,6 +60,76 @@ ritis_df['dow'] = ritis_df.apply(lambda row : datetime.date(2019, row['mo'], row
 ritis_df['hour'] = ritis_df.apply(lambda row: int(row['timepart'].split(':')[0]), axis=1)
 ritis_df['nhpp_period'] = ritis_df.apply(lambda row : get_nhpp_period(row['dow'], row['hour']), axis=1)
 
+#### NHPP time period 1
 
+period_1_df = ritis_df.copy(deep=True)
+period_1_df = period_1_df[period_1_df['nhpp_period'] == 1]
+
+g50 = period_1_df.groupby('tmc_code')['travel_time_seconds'].quantile(q=0.5)
+period_1_g50_df = g50.to_frame()
+period_1_g50_df = period_1_g50_df.rename(columns={'travel_time_seconds' : "p1_tt_secs_50pct"})
+
+g80 = period_1_df.groupby('tmc_code')['travel_time_seconds'].quantile(q=0.8)
+period_1_g80_df = g80.to_frame()
+period_1_g80_df = period_1_g80_df.rename(columns={'travel_time_seconds' : "p1_tt_secs_80pct"})
+
+period_1_stats_df = period_1_g50_df.merge(right=period_1_g80_df, left_on='tmc_code', right_on='tmc_code')
+period_1_stats_df['p1_lottr'] = round(period_1_stats_df['p1_tt_secs_80pct'] / period_1_stats_df['p1_tt_secs_50pct'], 2)
+
+
+#### NHPP time period 2
+
+period_2_df = ritis_df.copy(deep=True)
+period_2_df = period_2_df[period_2_df['nhpp_period'] == 2]
+
+g50 = period_2_df.groupby('tmc_code')['travel_time_seconds'].quantile(q=0.5)
+period_2_g50_df = g50.to_frame()
+period_2_g50_df = period_2_g50_df.rename(columns={'travel_time_seconds' : "p2_tt_secs_50pct"})
+
+g80 = period_2_df.groupby('tmc_code')['travel_time_seconds'].quantile(q=0.8)
+period_2_g80_df = g80.to_frame()
+period_2_g80_df = period_2_g80_df.rename(columns={'travel_time_seconds' : "p2_tt_secs_80pct"})
+
+period_2_stats_df = period_2_g50_df.merge(right=period_2_g80_df, left_on='tmc_code', right_on='tmc_code')
+period_2_stats_df['p2_lottr'] = round(period_2_stats_df['p2_tt_secs_80pct'] / period_2_stats_df['p2_tt_secs_50pct'], 2)
+
+#### NHPP time period 3
+
+period_3_df = ritis_df.copy(deep=True)
+period_3_df = period_3_df[period_3_df['nhpp_period'] == 3]
+
+g50 = period_3_df.groupby('tmc_code')['travel_time_seconds'].quantile(q=0.5)
+period_3_g50_df = g50.to_frame()
+period_3_g50_df = period_3_g50_df.rename(columns={'travel_time_seconds' : "p3_tt_secs_50pct"})
+
+g80 = period_3_df.groupby('tmc_code')['travel_time_seconds'].quantile(q=0.8)
+period_3_g80_df = g80.to_frame()
+period_3_g80_df = period_3_g80_df.rename(columns={'travel_time_seconds' : "p3_tt_secs_80pct"})
+
+period_3_stats_df = period_3_g50_df.merge(right=period_3_g80_df, left_on='tmc_code', right_on='tmc_code')
+period_3_stats_df['p3_lottr'] = round(period_3_stats_df['p3_tt_secs_80pct'] / period_3_stats_df['p3_tt_secs_50pct'], 2)
+
+
+#### NHPP time period 4
+
+period_4_df = ritis_df.copy(deep=True)
+period_4_df = period_4_df[period_4_df['nhpp_period'] == 4]
+
+g50 = period_4_df.groupby('tmc_code')['travel_time_seconds'].quantile(q=0.5)
+period_4_g50_df = g50.to_frame()
+period_4_g50_df = period_4_g50_df.rename(columns={'travel_time_seconds' : "p4_tt_secs_50pct"})
+
+g80 = period_4_df.groupby('tmc_code')['travel_time_seconds'].quantile(q=0.8)
+period_4_g80_df = g80.to_frame()
+period_4_g80_df = period_4_g80_df.rename(columns={'travel_time_seconds' : "p4_tt_secs_80pct"})
+
+period_4_stats_df = period_4_g50_df.merge(right=period_4_g80_df, left_on='tmc_code', right_on='tmc_code')
+period_4_stats_df['p3_lottr'] = round(period_4_stats_df['p4_tt_secs_80pct'] / period_4_stats_df['p4_tt_secs_50pct'], 2)
+
+
+
+
+
+#### - old code below this point
 g50 = ritis_df.groupby('tmc_code')['travel_time_seconds'].quantile(q=0.5)
 g80 = ritis_df.groupby('tmc_code')['travel_time_seconds'].quantile(q=0.8)
