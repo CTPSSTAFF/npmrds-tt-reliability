@@ -34,23 +34,4 @@ The location of this CSV file is specified by the variable __ritis\_data\_csv__.
 #### Required input 2: DBF file containing attribute table for NPMRDS shapefile
 The location of this input is given by the variable __tmc\_attr\_table\_dbf__.
 
-### Formula
-This single regional LOTTR metric for all vehicles is given by the formula:
-$$ 
-{NHPP\_Reliability\_Measure} = \frac{\sum \limits _{r=1} ^{R} {SL}_{i} * {AV}_{i} * {OF}_{j}} {\sum \limits _{t=1} ^{T} {SL}_{i} * {AV}_{i} * {OF}_{j}}
-$$
-
-Where:  
-${SL}_{i}$ = the segment length of the reporting segment _i_ \(nearest thousandth\) for the highway system considered.  
-$ {AV}_{i}$ = annual traffic volume of reporting segment _i_. \(See below.\)  
-$ {OF}_{j}$ = occupancy factor for vehicles on the NHS with a specific geographic area _j_ within the State / Metropolitan planning area. \(This value is 1.7 for Massachusetts.\)  
-__R__ = total number of Interstate and non-Interstate reporting segments exhibiting an LOTTR below 1.50 for all 4 time periods.  
-__T__ = total number of Interstate and non-Interstate reporting segments.
-
-And,  
-$ {AV}_{j}$ = AADT * Directional_Factor * 365  
-
-Where:
-Directional_Factor is 0.5 if the _faciltype_ of the TMC is 2 or 6, and is 1 if the _faciltype_ of the TMC is 1. 
-
 ## Trucks
