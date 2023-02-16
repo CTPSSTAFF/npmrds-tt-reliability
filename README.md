@@ -36,7 +36,7 @@ The location of this input is given by the variable __tmc\_attr\_table\_dbf__.
 
 ### Formula
 This single regional LOTTR metric for all vehicles is given by the formula:
-$$
+$$ 
 {NHPP\_Reliability\_Measure} = \frac{\sum \limits _{r=1} ^{R} {SL}_{i} * {AV}_{i} * {OF}_{j}} {\sum \limits _{t=1} ^{T} {SL}_{i} * {AV}_{i} * {OF}_{j}}
 $$
 
