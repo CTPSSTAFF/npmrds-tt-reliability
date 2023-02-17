@@ -5,11 +5,12 @@ This repository contains:
 * a Jupyter notebeook to calculate the LOTTR metric for trucks
 
 ## Methodology
-The methodology for calculating the level of travel-time reliabililty (LOTTR) metric for all vehicles from NPMRDS data is documented in the FHWA document  
+The methodology for calculating the level of travel-time reliabililty (LOTTR) metric 
+for all vehicles and for trucks from NPMRDS data is documented in the FHWA document  
 [National Performance Measures for Congestions, Reliability, and Freight, and CMAQ Traffic Congestion](https://www.fhwa.dot.gov/tpm/guidance/hif18040.pdf).
 
 In summary, we:
-1. Calculate the LOTTR metric for each TMC for each of the four National Highway Performance (time) Periods for all vehicles, and then
+1. Calculate the LOTTR metric for each TMC for each of the 4 (all vehicles) or 5 (trucks) National Highway Performance (time) Periods, and then
 2. Caclulate the single MPO region-wide LOTTR metric from \(1\).
 
 The 4 National Highway Performance Program (NHPP) time periods for __all vehicles__ are:  
@@ -46,3 +47,8 @@ delivered by the npmrds-analytics email system.   The location of the CSV file c
 
 ### Required input 2: DBF file containing attribute table for NPMRDS shapefile
 The location of this input is given by the variable __tmc\_attr\_table\_dbf__ in each Jupyter notebook.
+
+## Outputs
+Each notebook produces two outputs:
+1. A CSV file with the LOTTR metric calculated for each TMC; the location of this file is specified by the variable __output_csv_fn__ in each Jupyter notebook.
+2. The single, region-wide LOTTR metric is reported in the last cell of the notebook.
