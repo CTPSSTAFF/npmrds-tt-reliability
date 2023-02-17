@@ -58,4 +58,4 @@ The formula for the single, region-wide LOTTR metric for all vehicles is:
 <img src="img/all_vehicles_metric.png"></img>
 
 The formula for the single, region-wide LOTTR metric for trucks is:
-<img src="img/trucks_metric.png"></img>
+<img src="img/truck_metric.png"></img>
