@@ -52,3 +52,10 @@ The location of this input is given by the variable __tmc\_attr\_table\_dbf__ in
 Each notebook produces two outputs:
 1. A CSV file with the LOTTR metric calculated for each TMC; the location of this file is specified by the variable __output_csv_fn__ in each Jupyter notebook.
 2. The single, region-wide LOTTR metric is reported in the last cell of the notebook.
+
+### Region-wide LOTTR Metric
+The formula for the single, region-wide LOTTR metric for all vehicles is:
+<img src="img/all_vehicles_metric.png"></img>
+
+The formula for the single, region-wide LOTTR metric for trucks is:
+<img src="img/trucks_metric.png"></img>
